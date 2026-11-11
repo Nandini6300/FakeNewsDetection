@@ -1,6 +1,6 @@
-
-flask
+Flask
 requests
 feedparser
 beautifulsoup4
 trafilatura
+gunicorn
