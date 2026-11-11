@@ -11,8 +11,12 @@ load_dotenv()
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 MODEL_NAME = "gemini-2.5-flash"
-
-
+client = genai.Client(
+    api_key=GEMINI_API_KEY,
+    http_options=types.HttpOptions(
+        api_version="v1beta"
+    )
+)
 def parse_ai_json(text):
     text = text.strip()
     text = re.sub(r"^```(?:json)?\s*", "", text)
@@ -100,6 +104,12 @@ def verify_news(news, articles):
         )
 
     known_result = check_known_facts(news)
+    client = genai.Client(
+    api_key=GEMINI_API_KEY,
+    http_options=types.HttpOptions(
+        api_version="v1beta"
+    )
+)
 
     if known_result is not None:
         print("\nKNOWN FACT MATCH:", known_result["prediction"])
@@ -189,14 +199,13 @@ Do not include Markdown outside the JSON.
 )
 
         response = client.models.generate_content(
-            model=MODEL_NAME,
-            contents=prompt,
-            config=types.GenerateContentConfig(
-                temperature=0,
-                response_mime_type="application/json",
-                max_output_tokens=1200
-            )
-        )
+    model=MODEL_NAME,
+    contents=prompt,
+    config=types.GenerateContentConfig(
+        temperature=0,
+        max_output_tokens=1200
+    )
+)
 
         ai_text = response.text or ""
 
