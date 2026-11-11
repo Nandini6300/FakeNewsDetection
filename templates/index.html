@@ -1,0 +1,191 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>TruthScan AI - Fake News Detection</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <header class="header">
+
+        <h1>TruthScan AI</h1>
+
+        <p>Fake News Detection Using Generative AI</p>
+
+    </header>
+
+
+    <main class="container">
+
+        <section class="input-section">
+
+            <h2>Verify Your News</h2>
+
+            <p class="description">
+                Enter a news headline or complete news article
+                to check its authenticity.
+            </p>
+
+            <textarea
+                id="newsInput"
+                placeholder="Enter news here..."
+                rows="6"
+                maxlength="3000"
+            ></textarea>
+
+
+            <button
+                id="checkButton"
+                type="button"
+                onclick="checkNews()"
+            >
+                Analyze News
+            </button>
+
+
+            <div id="loading" class="hidden">
+
+                <div class="spinner"></div>
+
+                <p>
+                    Searching the internet and analyzing news...
+                </p>
+
+                <p>Please wait.</p>
+
+            </div>
+
+
+            <div id="errorBox" class="error hidden"></div>
+
+        </section>
+
+
+        <section
+            id="resultSection"
+            class="result-section hidden"
+        >
+
+            <h2>Fake News Detection Result</h2>
+
+
+            <div class="prediction-container">
+
+                <h3>Final Prediction</h3>
+
+                <div
+                    id="prediction"
+                    class="prediction"
+                >
+                    Waiting for result
+                </div>
+
+            </div>
+
+
+            <div class="result-card">
+
+                <h3>Input News</h3>
+
+                <p id="inputNews"></p>
+
+            </div>
+
+
+            <div class="result-card">
+
+                <h3>AI Explanation</h3>
+
+                <p id="explanation"></p>
+
+            </div>
+
+
+            <div class="result-card">
+
+                <h3>Supporting Evidence</h3>
+
+                <div id="supportingEvidence">
+                    No evidence available.
+                </div>
+
+            </div>
+
+
+            <div class="result-card">
+
+                <h3>Contradicting Evidence</h3>
+
+                <div id="contradictingEvidence">
+                    No evidence available.
+                </div>
+
+            </div>
+
+
+            <div class="result-card">
+
+                <h3>Evidence Sources</h3>
+
+                <div id="sources">
+                    No sources available.
+                </div>
+
+            </div>
+
+
+            <div class="result-card">
+
+                <h3>Verification Information</h3>
+
+                <p id="articleCount">
+                    Articles found: 0
+                </p>
+
+                <p id="processingTime">
+                    Processing time: 0 seconds
+                </p>
+
+            </div>
+
+
+            <p class="disclaimer">
+
+                AI-generated predictions are not guaranteed
+                to be accurate. Always check the original
+                sources before sharing news.
+
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <footer class="footer">
+
+        <p>
+            TruthScan AI | Fake News Detection Using
+            Generative AI
+        </p>
+
+    </footer>
+
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>
