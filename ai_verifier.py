@@ -183,7 +183,10 @@ Do not include Markdown outside the JSON.
 """
 
     try:
-        client = genai.Client(api_key=GEMINI_API_KEY)
+        client = genai.Client(
+    api_key=GEMINI_API_KEY,
+    http_options=types.HttpOptions(api_version="v1beta")
+)
 
         response = client.models.generate_content(
             model=MODEL_NAME,
